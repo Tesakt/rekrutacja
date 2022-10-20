@@ -29,3 +29,16 @@ sentences = [
 
 
 # Good luck! You can write all the code in this file.
+
+from collections import defaultdict
+
+counter = defaultdict(int)
+
+for phrase in sentences:
+    phrase = phrase.replace(",", "").replace("?", "").replace(":", "").replace(";", "").replace("!", "").casefold().split()
+    for word in phrase:
+            counter[word] += 1
+
+rank = sorted(counter.items(), key=lambda x: x[1])[-3:]
+for i, item in enumerate(rank):
+    print(f"{i + 1}. \"{item[0]}\" - {item[1]}")
